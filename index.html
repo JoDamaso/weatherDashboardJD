@@ -16,78 +16,93 @@
         </header>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 bg-light card p-2 mb-3">
                     <h3 class="mt-3 text-center">Search for a City:</h3>
                     <div class="input-group">
-                        <input id="city" type="text" class="form-control" placeholder="Search for a city">
+                        <input id="searched-city" type="text" class="form-control" placeholder="Search for a city">
                     </div>
                     <div class="pt-2">
                     <button class="btn btn-primary col-12" type="button" id="search">Search</button>
                     </div>
                     <div class="col-12">
-                        <ul id="history" class="list-group pt-2">
+                        <div class="list-group pt-2" id="history">
+                            <!-- add class='active' dynamically -->
+                            <button type="button" class="list-group-item list-group-item-action">Houston</button>
+                            <button type="button" class="list-group-item list-group-item-action">Austin</button>
+                            <button type="button" class="list-group-item list-group-item-action">Dallas</button>
+                            <button type="button" class="list-group-item list-group-item-action">New York</button>
+                        </div>
+                        <!-- <ul id="history" class="list-group pt-2">
+                            filler
                             <li class="list-group-item">Houston</li>
                             <li class="list-group-item">Austin</li>
                             <li class="list-group-item">Dallas</li>
-                            <!-- append searched history to li element -->
-                        </ul>
+                            append searched history to li element
+                        </ul> -->
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
                         <!-- must add d-none later to city-weather -->
-                        <div class="col-12 p-2 card text-dark bg-light mb-3 m-3" id="city-weather">
+                        <div class="col-12 p-2 card text-dark bg-light mb-3 m-3 border-primary d-none" id="city-weather">
                             <div class="card-body">
-                                <h3 id="city" class="card-title">City Name Goes Here</h3>
+                                <h3 id="current-city" class="card-title">City Name Goes Here</h3>
+                                <img id="dashboard-icon" alt="">
                                 <!-- insert these via DOM and fetch -->
-                                <p id="temp">Temperature :</p>
-                                <p id="wind">Wind Speed :</p>
-                                <p id="humidity">Humidity :</p>
-                                <p id="uv">UV Index :</p>
+                                <p>Temperature : <span id="temp"></span></p>
+                                <p>Wind Speed : <span id="wind"></span></p>
+                                <p>Humidity : <span id="humidity"></span></p>
+                                <p>UV Index : <span class="badge badge-success" id="uv"></span></p>
                             </div>
                         </div>
                     </div>
                     <!-- must add d-none later to forecast -->
-                    <div class="row" id="forecast">
-                        <div class="col-lg-9">
-                            <h3>5-Day Forecast:</h3>
+                    <div class="row">
+                        <div class="col-lg-9 d-none" id="forecast">
+                            <h3>5-Day Forecast :</h3>
                         </div>
-                        <div class="card-deck">
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <!-- Used cards and card decks to create these -->
+                        <div class="card-deck col-12 d-none" id="future-weather">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
                                 <h5 class="card-title">Date</h5>
-                                <p class="card-text">Temp : qqqqqqqqqqqqqqqqqqqqqqqq</p>
+                                <img src="" alt="">
+                                <p class="card-text">Temp : Append Here </p>
                                 <p class="card-text">Wind :</p>
                                 <p class="card-text">Humidity :</p>
                                 </div>
                             </div>
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
                                 <h5 class="card-title">Date</h5>
+                                <img src="" alt="">
                                 <p class="card-text">Temp :</p>
                                 <p class="card-text">Wind :</p>
                                 <p class="card-text">Humidity :</p>
                                 </div>
                             </div>
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
                                 <h5 class="card-title">Date</h5>
+                                <img src="" alt="">
                                 <p class="card-text">Temp :</p>
                                 <p class="card-text">Wind :</p>
                                 <p class="card-text">Humidity :</p>
                                 </div>
                             </div>
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
                                 <h5 class="card-title">Date</h5>
+                                <img src="" alt="">
                                 <p class="card-text">Temp :</p>
                                 <p class="card-text">Wind :</p>
                                 <p class="card-text">Humidity :</p>
                                 </div>
                             </div>
-                            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
                                 <h5 class="card-title">Date</h5>
+                                <img src="" alt="">
                                 <p class="card-text">Temp :</p>
                                 <p class="card-text">Wind :</p>
                                 <p class="card-text">Humidity :</p>
@@ -98,7 +113,9 @@
                 </div>
             </div>
         </div>
-        
+        <footer>
+            
+        </footer>
         <script src="./assets/script.js"></script>
     </body>
 </html>
