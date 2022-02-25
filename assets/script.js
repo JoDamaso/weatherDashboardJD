@@ -3,7 +3,7 @@ const apiKey = "b791ce644df21a24637c0d54506688a5";
 
 // these variables target the search button, history, and inputted city 
 var searchBtn = document.getElementById('search');
-var history = document.getElementById('history');
+var historyEl = document.getElementById('history');
 var city = document.getElementById('searched-city');
 
 // these variables target the current searched city 
@@ -17,9 +17,14 @@ var dashBoardEl = document.getElementById('city-weather');
 var fiveDay = document.getElementById('forecast');
 var dailyWeather = document.getElementById('future-weather');
 
+
+
 // current city and inserting temp, wind, humidity, uv into the current searched city
 function cityFinder () {
     console.log(city.value);
+    
+    localStorage.setItem("city", (city.value));
+    
     limit = 5;
     let cityUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=${apiKey}`;
 
@@ -28,8 +33,10 @@ function cityFinder () {
         return response.json();
     })
     .then(function (data) {
-        // console.log(data.city.coord);
         const {lat, lon} = data.city.coord;
+        // console.log(data);
+        // var currentLat = data.city.coord.lat;
+        // var currentLon = data.city.coord.lon;
         let currentUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&limit=${limit}&units=imperial&appid=${apiKey}`;
         fetch(currentUrl)
         .then(function (response) {
@@ -50,13 +57,13 @@ function cityFinder () {
             currentIcon.setAttribute("alt", data.current.weather[0].description);
             console.log(data)
         })
-        .then(function (data) {
-        var fiveHumidity  = data.daily[0].humidity;
-        var fiveWindSpeed = data.daily[0].wind_speed;
-        var fiveTemp = data.daily[0].temp.day;
-        var futureIcon = data.daily[0].weather[0].icon;
-        console.log(data.daily[0].temp.day);
-        })
+        // .then(function (data) {
+        // var fiveHumidity  = data.daily[0].humidity;
+        // var fiveWindSpeed = data.daily[0].wind_speed;
+        // var fiveTemp = data.daily[0].temp.day;
+        // var futureIcon = data.daily[0].weather[0].icon;
+        // console.log(data.daily[0].temp.day);
+        // })
     })
     .catch(function (error) {
         alert("Please enter a city name located in the U.S");
@@ -64,7 +71,25 @@ function cityFinder () {
     })
 };
 
+// sets local storage
+function cityHistory () {
+    var saved = localStorage.getItem("city");
+    var historyBtn = document.createElement("button");
+    historyBtn.textContent = saved;
+    historyEl.appendChild(historyBtn);
+    console.log(saved);
+    
+
+    historyBtn.addEventListener("click", function(){
+        console.log("clicked")
+        cityFinder(saved);
+        console.log(historyBtn);
+    });
+};
+
 searchBtn.addEventListener("click", cityFinder);
+cityHistory();
+
 
 // var fiveHumidity  = data.daily[0].humidity;
 // var fiveWindSpeed = data.daily[0].wind_speed;
