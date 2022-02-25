@@ -17,6 +17,11 @@ var dashBoardEl = document.getElementById('city-weather');
 var fiveDay = document.getElementById('forecast');
 var dailyWeather = document.getElementById('future-weather');
 
+// variables that target the 5 day forcast 
+var tempCard = document.getElementById("temp1");
+var windCard = document.getElementById("wind1");
+var humidCard = document.getElementById("humid1");
+var iconCard = document.getElementById("icon1");
 
 
 // current city and inserting temp, wind, humidity, uv into the current searched city
@@ -55,14 +60,29 @@ function cityFinder () {
             currentCity.textContent = city.value;
             currentIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + dashBoardIcon + "@2x.png");
             currentIcon.setAttribute("alt", data.current.weather[0].description);
-            console.log(data)
+            
+        var fiveHumidity  = data.daily[0].humidity;
+        var fiveWindSpeed = data.daily[0].wind_speed;
+        var fiveTemp = data.daily[0].temp.day
+        var futureIcon = data.daily[0].weather[0].icon;
+
+        tempCard.append(fiveTemp);
+        windCard.append(fiveWindSpeed);
+        humidCard.append(fiveHumidity);
+        iconCard.append(futureIcon);
+        
+        console.log(data.daily[0].temp.day);
         })
         // .then(function (data) {
-        // var fiveHumidity  = data.daily[0].humidity;
-        // var fiveWindSpeed = data.daily[0].wind_speed;
-        // var fiveTemp = data.daily[0].temp.day;
-        // var futureIcon = data.daily[0].weather[0].icon;
-        // console.log(data.daily[0].temp.day);
+        // // var fiveHumidity  = data.daily[0].humidity;
+        // // var fiveWindSpeed = data.daily[0].wind_speed;
+        // console.log(data)
+        // // var fiveTemp = data.daily
+        // // var futureIcon = data.daily[0].weather[0].icon;
+        
+        // // tempCard.appendChild(fiveTemp);
+
+        // // console.log(data.daily[0].temp.day);
         // })
     })
     .catch(function (error) {
