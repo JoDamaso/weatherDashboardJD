@@ -13,6 +13,7 @@ var currentWind = document.getElementById('wind');
 var currentHumid = document.getElementById('humidity');
 var currentUv = document.getElementById('uv');
 var currentIcon = document.getElementById('dashboard-icon');
+var dateEl = document.getElementById('current-date');
 var dashBoardEl = document.getElementById('city-weather');
 var fiveDay = document.getElementById('forecast');
 var dailyWeather = document.getElementById('future-weather');
@@ -26,11 +27,10 @@ var iconCard = document.getElementById("icon1");
 
 // current city and inserting temp, wind, humidity, uv into the current searched city
 function cityFinder (input) {
-    console.log(input)
+    // console.log(input)
     if (input instanceof Event) {
         input = city.value
     }
-    console.log(input);
     
     var savedCity = localStorage.getItem("city")
     if (savedCity === null) {
@@ -61,25 +61,39 @@ function cityFinder (input) {
             return response.json();
         })
         .then(function (data) {
-            // current forcast for big section
+            // current forecast for big section
+            // console.log(data.current);
             const {temp, uvi, humidity, wind_speed} = data.current;
             var dashBoardIcon = data.current.weather[0].icon
+            var date = new Date(data.current.dt * 1000).toLocaleDateString("en-US");
             currentTemp.textContent = temp + " °F";
             currentHumid.textContent = humidity + " %";
             currentWind.textContent = wind_speed + " MPH";
             currentUv.textContent = uvi;
             currentCity.textContent = city.value;
+            dateEl.textContent = date;
             currentIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + dashBoardIcon + "@2x.png");
             currentIcon.setAttribute("alt", data.current.weather[0].description);
+
+            if (uvi < 3) {
+                $("#uv").css("background-color", "green");
+            } else if (uvi < 7) {
+                $("#uv").css("background-color", "yellow");
+            } else {
+                $("#uv").css("background-color", "red");
+            }
+            
+            // console.log("1" + "2");
             
             // 5 day forecast
                 for (var i = 0; i < 5; i++) {
-                    // console.log(data.daily[0].weather[0].icon);
+                    // console.log(data.daily);
                     var fiveTemp = data.daily[i].temp.day;
                     var fiveWindSpeed = data.daily[i].wind_speed;
                     var fiveHumidity  = data.daily[i].humidity;
                     var futureIcon = data.daily[i].weather[0].icon;
-
+                    var futureDate = new Date(data.daily[i].dt * 1000).toLocaleDateString("en-US");
+                    document.getElementById("date" + (i + 1)).textContent = futureDate;
                     document.getElementById("temp" + (i + 1)).textContent = fiveTemp + " °F";
                     document.getElementById("wind" + (i + 1)).textContent = fiveWindSpeed + " MPH";
                     document.getElementById("humid" + (i + 1)).textContent = fiveHumidity + " %";
@@ -103,6 +117,7 @@ function cityHistory () {
     saved = JSON.parse(saved)
     for (var city of saved) {
         var historyBtn = document.createElement("button");
+        historyBtn.classList.add("btn", "btn-primary", "col-12", "m-1");
         historyBtn.textContent = city;
         historyEl.appendChild(historyBtn);
     }
@@ -118,6 +133,3 @@ document.addEventListener("click", function(event){
 
 searchBtn.addEventListener("click", cityFinder);
 cityHistory();
-
-
-

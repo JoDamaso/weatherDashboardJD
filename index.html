@@ -37,7 +37,7 @@
                         <div class="col-12 p-2 card text-dark bg-light mb-3 m-3 border-primary d-none" id="city-weather">
                             <div class="card-body">
                                 <h3 id="current-city" class="card-title"></h3>
-                                <p>ADD DATE HERE</p>
+                                <p id="current-date">ADD DATE HERE</p>
                                 <img id="dashboard-icon" alt="">
                                 <!-- insert these via DOM and fetch -->
                                 <p>Temperature : <span id="temp"></span></p>
@@ -56,7 +56,7 @@
                         <div class="card-deck col-12 d-none" id="future-weather">
                             <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 class="card-title" id="date1">Date</h5>
                                 <img src="" alt="" id="icon1">
                                 <p class="card-text">Temp : <span id="temp1"></span></p>
                                 <p class="card-text">Wind : <span id="wind1"></span></p>
@@ -65,7 +65,7 @@
                             </div>
                             <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 class="card-title" id="date2">Date</h5>
                                 <img src="" alt="" id="icon2">
                                 <p class="card-text">Temp : <span id="temp2"></span></p>
                                 <p class="card-text">Wind : <span id="wind2"></span></p>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 class="card-title" id="date3">Date</h5>
                                 <img src="" alt="" id="icon3">
                                 <p class="card-text">Temp : <span id="temp3"></span></p>
                                 <p class="card-text">Wind : <span id="wind3"></span></p>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 class="card-title" id="date4">Date</h5>
                                 <img src="" alt="" id="icon4">
                                 <p class="card-text">Temp : <span id="temp4"></span></p>
                                 <p class="card-text">Wind : <span id="wind4"></span></p>
@@ -92,7 +92,7 @@
                             </div>
                             <div class="card text-white bg-dark mb-3" style="max-width: 100%;">
                                 <div class="card-body">
-                                <h5 class="card-title">Date</h5>
+                                <h5 class="card-title" id="date5">Date</h5>
                                 <img src="" alt="" id="icon5">
                                 <p class="card-text">Temp : <span id="temp5"></span></p>
                                 <p class="card-text">Wind : <span id="wind5"></span></p>
@@ -107,6 +107,7 @@
         <footer>
             
         </footer>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="./assets/script.js"></script>
     </body>
 </html>
